@@ -6,7 +6,8 @@
 </head>
 <body>
 {% for person in data %}
-    <h1>Hi {{person[0]}}</h1>
+    <h1>Hi {{person[0] + ' ' + person[1]}}</h1>
+    <p>Your age is: {{person[2]}}</p>
 {% endfor %}
 </body>
 </html>

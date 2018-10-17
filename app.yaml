@@ -3,6 +3,8 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+- url: /read
+  script: main.application
 - url: /.*
   script: main.application
 
