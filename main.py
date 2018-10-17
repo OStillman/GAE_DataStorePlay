@@ -24,11 +24,12 @@ class MainPage(webapp2.RequestHandler):
     def post(self):
         person_fname = self.request.get('firstname')
         person_sname = self.request.get('surname')
+        person_age = self.request.get('age')
         template = template_env.get_template('entries.html')
         context = {
-            'text': 'Hello',
             'fname': person_fname,
             'sname': person_sname,
+            'age': person_age,
         }
         self.response.out.write(template.render(context))
 
