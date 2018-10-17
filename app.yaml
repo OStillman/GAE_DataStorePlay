@@ -2,11 +2,6 @@ runtime: python27
 api_version: 1
 threadsafe: yes
 
-handlers:
-- url: /prefs
-  script: prefs.application
-  login: required
-
 - url: .*
   script: main.application
 
