@@ -32,7 +32,7 @@ class MainPage(webapp2.RequestHandler):
 
 class ReadPage(webapp2.RequestHandler):
     def get(self):
-        q = Person.query().order(Person.age)
+        q = Person.query().order(Person.last_name)
         data = []
         for person in q:
             data.append([person.first_name, person.last_name, person.age])
