@@ -36,9 +36,8 @@ class MainPage(webapp2.RequestHandler):
 class ReadPage(webapp2.RequestHandler):
     def get(self):
         q = Person.query()
-        results = q.fetch(3)
         data = []
-        for person in results:
+        for person in q:
             data.append([person.first_name, person.last_name, person.age])
 
         template = template_env.get_template('entries.html')
