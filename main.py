@@ -10,6 +10,7 @@ template_env = jinja2.Environment(
 class Person(ndb.Model):
     first_name = ndb.StringProperty()
     last_name = ndb.StringProperty()
+    age = ndb.IntegerProperty()
 
 
 class MainPage(webapp2.RequestHandler):
@@ -25,6 +26,10 @@ class MainPage(webapp2.RequestHandler):
         person_fname = self.request.get('firstname')
         person_sname = self.request.get('surname')
         person_age = self.request.get('age')
+
+        person_details = Person(first_name=person_fname, last_name=person_sname, age=person_age)
+        person_details.put()
+
         template = template_env.get_template('entries.html')
         context = {
             'fname': person_fname,
