@@ -5,7 +5,8 @@
     <title>Testing...</title>
 </head>
 <body>
-<h1>Hi {{fname + ' ' + sname}}</h1>
-<p>You are {{ age }}</p>
+{% for person in data %}
+    <h1>Hi {{person[0]}}</h1>
+{% endfor %}
 </body>
 </html>

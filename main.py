@@ -2,6 +2,7 @@ import jinja2
 import os
 import webapp2
 from google.appengine.ext import ndb
+import json
 
 template_env = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.getcwd())  # Get the templates in current directory
@@ -25,16 +26,21 @@ class MainPage(webapp2.RequestHandler):
     def post(self):
         person_fname = self.request.get('firstname')
         person_sname = self.request.get('surname')
-        person_age = self.request.get('age')
+        person_age = int(self.request.get('age'))
 
         person_details = Person(first_name=person_fname, last_name=person_sname, age=person_age)
         person_details.put()
 
+        q = Person.query()
+        results = q.fetch(3)
+        data = []
+        for person in results:
+            data.append([person.first_name, person.last_name, person.age])
+
+
         template = template_env.get_template('entries.html')
         context = {
-            'fname': person_fname,
-            'sname': person_sname,
-            'age': person_age,
+            'data': data,
         }
         self.response.out.write(template.render(context))
 
