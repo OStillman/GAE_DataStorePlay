@@ -17,10 +17,7 @@ class MainPage(webapp2.RequestHandler):
     def get(self): #Quite literally responding to GET HTTP calls
 
         template = template_env.get_template('home.html')
-        context = {
-            'text': 'Hello',
-        }
-        self.response.out.write(template.render(context))
+        self.response.out.write(template.render())
 
     def post(self):
         person_fname = self.request.get('firstname')
@@ -35,7 +32,7 @@ class MainPage(webapp2.RequestHandler):
 
 class ReadPage(webapp2.RequestHandler):
     def get(self):
-        q = Person.query()
+        q = Person.query().order(Person.age)
         data = []
         for person in q:
             data.append([person.first_name, person.last_name, person.age])

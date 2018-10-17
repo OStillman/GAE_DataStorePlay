@@ -5,9 +5,13 @@
     <title>Testing...</title>
 </head>
 <body>
+<ol>
 {% for person in data %}
-    <h1>Hi {{person[0] + ' ' + person[1]}}</h1>
-    <p>Your age is: {{person[2]}}</p>
+    <li>{{person[0] + ' ' + person[1]}}</li>
+    <ul>
+       <li>Age: {{person[2]}}</li>
+    </ul>
 {% endfor %}
+</ol>
 </body>
 </html>
